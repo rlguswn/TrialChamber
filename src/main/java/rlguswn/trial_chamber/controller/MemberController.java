@@ -1,5 +1,6 @@
 package rlguswn.trial_chamber.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +15,12 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
 
-    @GetMapping("members/new")
+    @GetMapping("/members/new")
     public String createForm() {
         return "members/createMemberForm";
     }
@@ -33,7 +35,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("members/login")
+    @GetMapping("/members/login")
     public String loginForm() {
         return "members/loginMemberForm";
     }
