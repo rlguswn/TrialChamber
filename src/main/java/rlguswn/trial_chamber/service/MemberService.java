@@ -1,6 +1,8 @@
 package rlguswn.trial_chamber.service;
 
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import rlguswn.trial_chamber.domain.Member;
 import rlguswn.trial_chamber.repository.MemberRepository;
 
@@ -10,13 +12,20 @@ import java.util.Optional;
 @Transactional
 public class MemberService {
 
+    @Autowired
     private final MemberRepository memberRepository;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
     public Long join(Member member) {
+        String encodedParssword = bCryptPasswordEncoder.encode(member.getPassword());
+        member.setPassword(encodedParssword);
+        member.setRole("ROLE_USER");
         memberRepository.save(member);
         return member.getId();
     }
