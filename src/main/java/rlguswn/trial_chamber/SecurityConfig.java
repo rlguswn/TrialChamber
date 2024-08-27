@@ -14,18 +14,34 @@ public class SecurityConfig {
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws  Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/", "/members/new", "/members/login").permitAll()
+                        .requestMatchers("/admin").hasRole("USER")
                         .anyRequest().authenticated()
                 );
+
+        http
+                .formLogin((auth) -> auth
+                        .loginPage("/members/login")
+                        .loginProcessingUrl("/members/login")
+                        .defaultSuccessUrl("/", true)
+                        .permitAll()
+                );
+
+        http
+                .logout(logout -> logout
+                        .logoutUrl("/members/logout")
+                        .logoutSuccessUrl("/members/login")
+                );
+
+        http
+                .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
