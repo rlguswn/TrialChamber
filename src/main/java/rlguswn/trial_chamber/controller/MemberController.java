@@ -40,14 +40,14 @@ public class MemberController {
         return "members/loginMemberForm";
     }
 
-    @PostMapping("/members/login")
-    public String login(MemberLoginForm form, Model model) {
-        Optional<Member> member = memberService.login(form.getUsername(), form.getPassword());
-        if (member.isPresent()) {
-            return "redirect:/";
-        } else {
-            model.addAttribute("error", "이름 혹은 비밀번호를 다시 한번 확인해주세요.");
-            return "members/loginMemberForm";
-        }
-    }
+//    @PostMapping("/members/login")
+//    public String login(MemberLoginForm form, Model model) {
+//        Optional<Member> member = memberService.login(form.getUsername(), form.getPassword());
+//        if (member.isPresent()) {
+//            return "redirect:/";
+//        } else {
+//            model.addAttribute("error", "이름 혹은 비밀번호를 다시 한번 확인해주세요.");
+//            return "members/loginMemberForm";
+//        }
+//    }
 }
