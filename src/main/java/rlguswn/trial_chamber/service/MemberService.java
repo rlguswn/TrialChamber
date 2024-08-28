@@ -23,11 +23,21 @@ public class MemberService {
     }
 
     public Long join(Member member) {
+        validateDuplicateMember(member);
+
         String encodedParssword = bCryptPasswordEncoder.encode(member.getPassword());
         member.setPassword(encodedParssword);
+
         member.setRole("ROLE_USER");
         memberRepository.save(member);
         return member.getId();
+    }
+
+    private void validateDuplicateMember(Member member) {
+        memberRepository.findByUsername(member.getUsername())
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                });
     }
 
     public List<Member> findMembers() {
