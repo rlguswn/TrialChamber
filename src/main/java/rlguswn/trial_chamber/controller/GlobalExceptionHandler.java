@@ -12,4 +12,10 @@ public class GlobalExceptionHandler {
         redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
         return "redirect:/members/new";
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public String handleIllegalArgumentException(IllegalArgumentException ex, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
+        return "redirect:/members/new";
+    }
 }
