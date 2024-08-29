@@ -8,6 +8,7 @@ import rlguswn.trial_chamber.repository.MemberRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Transactional
 public class MemberService {
@@ -24,6 +25,7 @@ public class MemberService {
 
     public Long join(Member member) {
         validateDuplicateMember(member);
+        validateMemberData(member);
 
         String encodedParssword = bCryptPasswordEncoder.encode(member.getPassword());
         member.setPassword(encodedParssword);
@@ -31,6 +33,25 @@ public class MemberService {
         member.setRole("ROLE_USER");
         memberRepository.save(member);
         return member.getId();
+    }
+
+    private static void validateMemberData(Member member) {
+        if (member.getUsername() == null || member.getUsername().isEmpty()) {
+            throw new IllegalArgumentException("이름을 입력해주세요.");
+        }
+        if (member.getUsername().length() < 4 || member.getUsername().length() > 16) {
+            throw new IllegalArgumentException("이름은 4 ~ 16 글자를 사용해야 합니다.");
+        }
+        if (!Pattern.compile("[a-zA-Z]").matcher(member.getUsername()).find()) {
+            throw new IllegalArgumentException("이름에 문자가 존재하지 않습니다.");
+        }
+
+        if (member.getPassword() == null || member.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("비밀번호를 입력해주세요");
+        }
+        if (member.getPassword().length() < 8) {
+            throw new IllegalArgumentException("비밀번호는 8 글자 이상을 사용해야 합니다.");
+        }
     }
 
     private void validateDuplicateMember(Member member) {
