@@ -2,6 +2,9 @@ package rlguswn.trial_chamber.domain;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 public class Member {
 
@@ -17,6 +20,32 @@ public class Member {
 
     @Column(length = 16)
     private String role;
+
+    @Column(length = 16)
+    private String name;
+
+    @Column(updatable = false, nullable = false)
+    private LocalDateTime createdDate;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> post;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Problem> problem;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Submission> submission;
+
+    protected Member() {
+    }
+
+    public Member(String username, String password, String name, String role) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.role = role;
+        this.createdDate = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -48,5 +77,29 @@ public class Member {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public List<Submission> getSubmission() {
+        return submission;
+    }
+
+    public void setSubmission(List<Submission> submission) {
+        this.submission = submission;
     }
 }
