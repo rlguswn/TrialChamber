@@ -34,11 +34,9 @@ public class Post {
     protected Post() {
     };
 
-    public Post(String title, String description, Member member, List<Problem> problem, LocalDateTime deadline, String previewImage) {
+    public Post(String title, String description, LocalDateTime deadline, String previewImage) {
         this.title = title;
         this.description = description;
-        this.member = member;
-        this.problem = problem;
         this.deadline = deadline;
         this.previewImage = previewImage;
         this.createdDate = LocalDateTime.now();
