@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import rlguswn.trial_chamber.domain.Member;
+import rlguswn.trial_chamber.dto.MemberForm;
 import rlguswn.trial_chamber.service.MemberService;
 
 import java.util.Optional;

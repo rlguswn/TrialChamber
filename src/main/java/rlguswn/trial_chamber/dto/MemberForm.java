@@ -1,9 +1,10 @@
-package rlguswn.trial_chamber.controller;
+package rlguswn.trial_chamber.dto;
 
 public class MemberForm {
 
     private String username;
     private String password;
+    private String name;
     private String role;
 
     public String getUsername() {
@@ -20,6 +21,14 @@ public class MemberForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getRole() {
