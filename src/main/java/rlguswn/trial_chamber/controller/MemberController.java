@@ -2,14 +2,11 @@ package rlguswn.trial_chamber.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import rlguswn.trial_chamber.domain.Member;
 import rlguswn.trial_chamber.dto.MemberForm;
 import rlguswn.trial_chamber.service.MemberService;
-
-import java.util.Optional;
 
 @Controller
 public class MemberController {
@@ -28,7 +25,13 @@ public class MemberController {
 
     @PostMapping("/members/new")
     public String create(MemberForm form) {
-        Member member = new Member();
+        Member member = new Member(
+                form.getUsername(),
+                form.getPassword(),
+                form.getName(),
+                "Pending"
+        );
+
         member.setUsername(form.getUsername());
         member.setPassword(form.getPassword());
 
