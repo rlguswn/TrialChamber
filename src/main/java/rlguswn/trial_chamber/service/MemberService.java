@@ -69,6 +69,11 @@ public class MemberService {
         return memberRepository.findById(memberId);
     }
 
+    public Member findByUsername(String username) {
+        return memberRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException(username + "유저는 존재하지 않습니다."));
+    }
+
     public Optional<Member> login(String username, String password) {
         return memberRepository.findByUsername(username)
                 .filter(member -> member.getPassword().equals(password));
