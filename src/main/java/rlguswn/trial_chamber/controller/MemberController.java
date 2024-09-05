@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import rlguswn.trial_chamber.domain.Member;
 import rlguswn.trial_chamber.dto.MemberForm;
 import rlguswn.trial_chamber.service.MemberService;
 
@@ -27,17 +26,7 @@ public class MemberController {
 
     @PostMapping("/members/new")
     public String create(MemberForm form) {
-        Member member = new Member(
-                form.getUsername(),
-                form.getPassword(),
-                form.getName(),
-                "Pending"
-        );
-
-        member.setUsername(form.getUsername());
-        member.setPassword(form.getPassword());
-
-        memberService.join(member);
+        memberService.join(form);
         return "redirect:/";
     }
 
