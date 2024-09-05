@@ -37,4 +37,15 @@ public class MemberController {
         }
         return "members/loginMemberForm";
     }
+
+    @GetMapping("/members/my-info")
+    public String myInfo(Model model) {
+        Member member = memberService.getLoginMember();
+        if (member != null) {
+            model.addAttribute("member", member);
+        } else {
+            model.addAttribute("errorMessage", "멤버 정보를 찾을 수 없습니다.");
+        }
+        return "members/myInfo";
+    }
 }

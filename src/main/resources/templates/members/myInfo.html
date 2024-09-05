@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div>
+    <div th:if="${member}">
+        <p>아이디: <span th:text="${member.username}">아이디</span></p>
+        <p>이름: <span th:text="${member.name}">이름</span></p>
+        <p>가입일자: <span th:text="${member.createdDate}">가입일자</span></p>
+    </div>
+    <div th:if="${errorMessage}">
+        <p style="color: red;">[[${errorMessage}]]</p>
+    </div>
+</div>
+</body>
+</html>
