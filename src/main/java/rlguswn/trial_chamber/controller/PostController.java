@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import rlguswn.trial_chamber.domain.Member;
-import rlguswn.trial_chamber.domain.Post;
 import rlguswn.trial_chamber.dto.PostForm;
 import rlguswn.trial_chamber.service.MemberService;
 import rlguswn.trial_chamber.service.PostService;
@@ -32,20 +31,8 @@ public class PostController {
 
     @PostMapping("/posts/new")
     public String createPost(PostForm form) {
-        Post post = new Post(
-                form.getTitle(),
-                form.getDescription(),
-                form.getDeadline(),
-                form.getPreviewImage()
-        );
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
-        Member member = memberService.findByUsername(username);
-
-        post.setMember(member);
-
-        postService.createPost(post);
+        Member member = memberService.getLoginMember();
+        postService.createPost(form, member);
         return "redirect:/";
     }
 }

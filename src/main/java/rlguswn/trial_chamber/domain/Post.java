@@ -34,7 +34,8 @@ public class Post {
     protected Post() {
     };
 
-    public Post(String title, String description, LocalDateTime deadline, String previewImage) {
+    public Post(Member member, String title, String description, LocalDateTime deadline, String previewImage) {
+        this.member = member;
         this.title = title;
         this.description = description;
         this.deadline = deadline;
