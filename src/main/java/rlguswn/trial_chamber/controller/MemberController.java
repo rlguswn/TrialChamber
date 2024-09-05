@@ -2,8 +2,10 @@ package rlguswn.trial_chamber.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import rlguswn.trial_chamber.domain.Member;
 import rlguswn.trial_chamber.dto.MemberForm;
 import rlguswn.trial_chamber.service.MemberService;
@@ -40,18 +42,10 @@ public class MemberController {
     }
 
     @GetMapping("/members/login")
-    public String loginForm() {
+    public String login(@RequestParam(value = "error", required = false) String error, Model model) {
+        if (error != null) {
+            model.addAttribute("errorMessage", "아이디와 비밀번호를 다시 확인해주세요.");
+        }
         return "members/loginMemberForm";
     }
-
-//    @PostMapping("/members/login")
-//    public String login(MemberLoginForm form, Model model) {
-//        Optional<Member> member = memberService.login(form.getUsername(), form.getPassword());
-//        if (member.isPresent()) {
-//            return "redirect:/";
-//        } else {
-//            model.addAttribute("error", "이름 혹은 비밀번호를 다시 한번 확인해주세요.");
-//            return "members/loginMemberForm";
-//        }
-//    }
 }
