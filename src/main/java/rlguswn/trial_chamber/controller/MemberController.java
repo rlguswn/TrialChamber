@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import rlguswn.trial_chamber.domain.Member;
 import rlguswn.trial_chamber.dto.MemberForm;
+import rlguswn.trial_chamber.dto.MemberUpdateForm;
 import rlguswn.trial_chamber.service.MemberService;
 
 @Controller
@@ -47,5 +49,24 @@ public class MemberController {
             model.addAttribute("errorMessage", "멤버 정보를 찾을 수 없습니다.");
         }
         return "members/myInfo";
+    }
+
+    @GetMapping("/members/my-info/edit")
+    public String myInfoEditForm(Model model, MemberUpdateForm form) {
+        Member member = memberService.getLoginMember();
+        if (member != null) {
+            form.setName(member.getName());
+            form.setUsername(member.getUsername());
+            model.addAttribute("form", form);
+        } else {
+            model.addAttribute("errorMessage", "멤버 정보를 찾을 수 없습니다.");
+        }
+        return "members/updateMemberForm";
+    }
+
+    @PostMapping("/members/my-info/edit")
+    public String myInfoEdit(Model model, MemberUpdateForm form) {
+        memberService.updateMember(form);
+        return "redirect:/members/my-info";
     }
 }
