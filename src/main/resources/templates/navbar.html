@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <div th:fragment="navbar">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">TrialChamber</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarsExample03">
+                    <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">홈</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">시험지</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/posts">시험지</a></li>
+                            <li><a class="dropdown-item" href="#">지난 시험지</a></li>
+                            <li><a class="dropdown-item" href="#">미완성 시험지</a></li>
+                            <li><a class="dropdown-item" href="#">학생별 풀이기록</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">내 정보</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/members/my-info">내 정보</a></li>
+                            <li><a class="dropdown-item" href="#">풀이기록</a></li>
+                            <li><a class="dropdown-item" href="/members/login">로그인</a></li>
+                            <li><a class="dropdown-item" href="/members/logout">로그아웃</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">관리자</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">멤버 관리</a></li>
+                            <li><a class="dropdown-item" href="#">시험지 관리</a></li>
+                        </ul>
+                    </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/members/new">회원가입</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/members/login">회원 로그인</a>
+                        </li>
+                        <li class="nav-item"></li>
+                            <a class="nav-link" aria-current="page" href="/members/logout">로그아웃</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+  </body>
+</html>
