@@ -21,7 +21,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws  Exception {
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/members/new", "/members/login").permitAll()
+                        .requestMatchers(
+                                "/", 
+                                "/members/new", 
+                                "/members/login",
+                                "/css/**"
+                        ).permitAll()
                         .requestMatchers("/admin").hasRole("USER")
                         .anyRequest().authenticated()
                 );
