@@ -1,16 +1,27 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/header :: header}"></head>
 
-<body>
-<div>
-    <div th:if="${member}">
-        <p>아이디: <span th:text="${member.username}">아이디</span></p>
-        <p>이름: <span th:text="${member.name}">이름</span></p>
-        <p>가입일자: <span th:text="${member.createdDate}">가입일자</span></p>
-    </div>
-    <div th:if="${errorMessage}">
-        <p style="color: red;">[[${errorMessage}]]</p>
-    </div>
-</div>
-</body>
+    <body>
+        <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+        
+        <main class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-lg-12 col-md-9">
+                    <div th:if="${member}">
+                        <p>아이디: <span th:text="${member.username}">아이디</span></p>
+                        <p>이름: <span th:text="${member.name}">이름</span></p>
+                        <p>가입일자: <span th:text="${member.createdDate}">가입일자</span></p>
+                    </div>
+                    <div th:unless="${member}">
+                        <p>member 정보를 불러올 수 없습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+        <script th:replace="~{fragments/script :: script}"></script>
+    </body>
 </html>
