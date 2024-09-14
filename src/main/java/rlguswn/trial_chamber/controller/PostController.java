@@ -19,9 +19,9 @@ public class PostController {
     private final MemberService memberService;
 
     @Autowired
-    public PostController(PostService postService, MemberService memberService, MemberService memberService1) {
+    public PostController(PostService postService, MemberService memberService) {
         this.postService = postService;
-        this.memberService = memberService1;
+        this.memberService = memberService;
     }
 
     @GetMapping("/posts/new")
