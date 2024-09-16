@@ -38,7 +38,8 @@ public class Problem {
     protected Problem() {
     };
 
-    public Problem(Post post, String title, String description, String trialType, Boolean autoGrade) {
+    public Problem(Member member, Post post, String title, String description, String trialType, Boolean autoGrade) {
+        this.member = member;
         this.post = post;
         this.title = title;
         this.description = description;
