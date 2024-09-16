@@ -37,4 +37,14 @@ public class JpaPostRepository implements PostRepository {
     public List<Post> findAll() {
         return em.createQuery("select p from Post p", Post.class).getResultList();
     }
+
+    @Override
+    public boolean deleteByPostId(Long id) {
+        Post post = em.find(Post.class, id);
+        if (post != null) {
+            em.remove(post);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
 }
