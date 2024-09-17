@@ -1,5 +1,6 @@
 package rlguswn.trial_chamber.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import rlguswn.trial_chamber.domain.Member;
 import rlguswn.trial_chamber.domain.Post;
@@ -11,6 +12,7 @@ import rlguswn.trial_chamber.repository.ProblemRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class ProblemService {
 
     @Autowired
