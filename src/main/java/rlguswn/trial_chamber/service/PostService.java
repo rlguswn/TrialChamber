@@ -25,11 +25,11 @@ public class PostService {
         validatePostFormData(form);
 
         Post post = new Post(
-                member,
-                form.getTitle(),
-                form.getDescription(),
-                form.getDeadline(),
-                form.getPreviewImage()
+            member,
+            form.getTitle(),
+            form.getDescription(),
+            form.getDeadline(),
+            form.getPreviewImage()
         );
 
         postRepository.save(post);
