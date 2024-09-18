@@ -28,12 +28,12 @@ public class PostController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/posts/new")
+    @GetMapping("/post/new")
     public String createPostForm() {
         return "posts/createPostForm";
     }
 
-    @PostMapping("/posts/new")
+    @PostMapping("/post/new")
     public String createPost(PostForm form) {
         Member member = memberService.getLoginMember();
         postService.createPost(form, member);
@@ -48,14 +48,14 @@ public class PostController {
         } else {
             model.addAttribute("errorMessage", "포스트 정보를 찾을 수 없습니다.");
         }
-        return "posts/postDetail";
+        return "post/postDetail";
     }
 
     @GetMapping("/post")
     public String postList(Model model) {
         List<Post> posts = postService.findPosts();
         model.addAttribute("posts", posts);
-        return "posts/postList";
+        return "post/postList";
     }
 
     @GetMapping("/post/{postId}/edit")
@@ -66,14 +66,14 @@ public class PostController {
         } else {
             model.addAttribute("errorMessage", "포스트 정보를 찾을 수 없습니다.");
         }
-        return "posts/postDetail";
+        return "post/postDetail";
     }
 
     @PostMapping("/post/{postId}/edit")
     public String postEdit(@PathVariable Long postId, Model model, PostUpdateForm form) {
         Post post = postService.updatePost(postId, form);
         model.addAttribute("post", post);
-        return "posts/postDetail";
+        return "post/postDetail";
     }
 
     @PostMapping("/post/{postId}/delete")
