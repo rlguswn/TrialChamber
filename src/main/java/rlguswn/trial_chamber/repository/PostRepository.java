@@ -11,4 +11,7 @@ public interface PostRepository {
     List<Post> findByMemberId(Long memberId);
     List<Post> findAll();
     boolean deleteByPostId(Long id);
+    List<Post> findBeforeDeadline();
+    List<Post> findAfterDeadline();
+    List<Post> findTemporary();
 }

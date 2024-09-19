@@ -84,4 +84,16 @@ public class PostService {
     public boolean deleteById(Long postId) {
         return postRepository.deleteByPostId(postId);
     }
+
+    public List<Post> findPostsBeforeDeadline() {
+        return postRepository.findBeforeDeadline();
+    }
+
+    public List<Post> findPostsAfterDeadline() {
+        return postRepository.findAfterDeadline();
+    }
+
+    public List<Post> findPostsTemporary() {
+        return postRepository.findTemporary();
+    }
 }
