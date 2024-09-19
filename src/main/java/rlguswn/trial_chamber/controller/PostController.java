@@ -48,14 +48,14 @@ public class PostController {
         } else {
             model.addAttribute("errorMessage", "포스트 정보를 찾을 수 없습니다.");
         }
-        return "post/postDetail";
+        return "posts/postDetail";
     }
 
     @GetMapping("/post")
     public String postList(Model model) {
         List<Post> posts = postService.findPosts();
         model.addAttribute("posts", posts);
-        return "post/postList";
+        return "posts/postList";
     }
 
     @GetMapping("/post/{postId}/edit")
@@ -66,14 +66,14 @@ public class PostController {
         } else {
             model.addAttribute("errorMessage", "포스트 정보를 찾을 수 없습니다.");
         }
-        return "post/postDetail";
+        return "posts/postDetail";
     }
 
     @PostMapping("/post/{postId}/edit")
     public String postEdit(@PathVariable Long postId, Model model, PostUpdateForm form) {
         Post post = postService.updatePost(postId, form);
         model.addAttribute("post", post);
-        return "post/postDetail";
+        return "posts/postDetail";
     }
 
     @PostMapping("/post/{postId}/delete")
