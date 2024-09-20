@@ -86,4 +86,25 @@ public class PostController {
         model.addAttribute("errorMessage", "삭제 과정에 문제가 발생했습니다.");
         return "redirect:/post/" + postId + "/edit";
     }
+
+    @GetMapping("/post/before")
+    public String postBefore(Model model) {
+        List<Post> posts = postService.findPostsBeforeDeadline();
+        model.addAttribute("posts", posts);
+        return "posts/postList";
+    }
+
+    @GetMapping("/post/after")
+    public String postAfter(Model model) {
+        List<Post> posts = postService.findPostsAfterDeadline();
+        model.addAttribute("posts", posts);
+        return "posts/postList";
+    }
+
+    @GetMapping("/post/temporary")
+    public String postTemporary(Model model) {
+        List<Post> posts = postService.findPostsTemporary();
+        model.addAttribute("posts", posts);
+        return "posts/postList";
+    }
 }
