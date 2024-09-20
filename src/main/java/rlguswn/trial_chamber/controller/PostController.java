@@ -66,7 +66,7 @@ public class PostController {
         } else {
             model.addAttribute("errorMessage", "포스트 정보를 찾을 수 없습니다.");
         }
-        return "posts/postDetail";
+        return "posts/updatePostForm";
     }
 
     @PostMapping("/post/{postId}/edit")
@@ -84,7 +84,7 @@ public class PostController {
             return "redirect:/post";
         }
         model.addAttribute("errorMessage", "삭제 과정에 문제가 발생했습니다.");
-        return "redirect:/post/" + postId + "/edit";
+        return "redirect:/post/" + postId;
     }
 
     @GetMapping("/post/before")
