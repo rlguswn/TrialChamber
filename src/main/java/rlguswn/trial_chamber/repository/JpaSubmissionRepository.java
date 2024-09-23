@@ -50,4 +50,11 @@ public class JpaSubmissionRepository implements SubmissionRepository {
         }
         return Boolean.FALSE;
     }
+
+    @Override
+    public List<Submission> findByMemberId(Long memberId) {
+        return em.createQuery("select s from Submission s where s.memberId = :memberId", Submission.class)
+                .setParameter("memberId", memberId)
+                .getResultList();
+    }
 }

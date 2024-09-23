@@ -9,6 +9,7 @@ public interface SubmissionRepository {
     Submission save(Submission submission);
     Optional<Submission> findById(Long id);
     List<Submission> findByPostId(Long postId);
+    List<Submission> findByMemberId(Long memberId);
     List<Submission> findAll();
     boolean deleteBySubmissionId(Long id);
 }

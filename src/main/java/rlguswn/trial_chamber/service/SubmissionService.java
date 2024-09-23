@@ -70,4 +70,12 @@ public class SubmissionService {
             throw new IllegalArgumentException("내용을 입력해주세요.");
         }
     }
+
+    public boolean deleteById(Long submissionId) {
+        return submissionRepository.deleteBySubmissionId(submissionId);
+    }
+
+    public List<Submission> findSubmissionByMemberId(Long memberId) {
+        return submissionRepository.findByMemberId(memberId);
+    }
 }
