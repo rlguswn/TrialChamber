@@ -4,12 +4,11 @@ import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import rlguswn.trial_chamber.repository.JpaMemberRepository;
-import rlguswn.trial_chamber.repository.JpaPostRepository;
-import rlguswn.trial_chamber.repository.MemberRepository;
-import rlguswn.trial_chamber.repository.PostRepository;
+import rlguswn.trial_chamber.repository.*;
 import rlguswn.trial_chamber.service.MemberService;
 import rlguswn.trial_chamber.service.PostService;
+import rlguswn.trial_chamber.service.ProblemService;
+import rlguswn.trial_chamber.service.SubmissionService;
 
 @Configuration
 public class SpringConfig {
@@ -32,6 +31,16 @@ public class SpringConfig {
     }
 
     @Bean
+    public ProblemService problemService() {
+        return new ProblemService(problemRepository());
+    }
+
+    @Bean
+    public SubmissionService submissionService() {
+        return new SubmissionService(submissionRepository());
+    }
+
+    @Bean
     public MemberRepository memberRepository() {
         return new JpaMemberRepository(em);
     }
@@ -39,5 +48,15 @@ public class SpringConfig {
     @Bean
     public PostRepository postRepository() {
         return new JpaPostRepository(em);
+    }
+
+    @Bean
+    public ProblemRepository problemRepository() {
+        return new JpaProblemRepository(em);
+    }
+
+    @Bean
+    public SubmissionRepository submissionRepository() {
+        return new JpaSubmissionRepository(em);
     }
 }
