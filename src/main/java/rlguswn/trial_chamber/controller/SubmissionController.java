@@ -102,14 +102,7 @@ public class SubmissionController {
         return "submissions/submissionList";
     }
 
-    @GetMapping("/submission/members")
-    public String submissionByMember(Model model) {
-        List<Member> members = memberService.findMembers();
-        model.addAttribute("members", members);
-        return "submissions/submissionMemberList";
-    }
-
-    @GetMapping("/submission/members/{memberId}")
+    @GetMapping("/submission/member/{memberId}")
     public String submissionByMemberDetail(@PathVariable Long memberId, Model model) {
         List<Submission> submissions = submissionService.findSubmissionByMemberId(memberId);
         model.addAttribute("submissions", submissions);
