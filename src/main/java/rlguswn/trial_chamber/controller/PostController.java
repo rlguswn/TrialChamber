@@ -36,15 +36,15 @@ public class PostController {
     @PostMapping("/post/new")
     public String createPost(PostForm form) {
         Member member = memberService.getLoginMember();
-        postService.createPost(form, member);
-        return "redirect:/";
+        Long postId = postService.createPost(form, member);
+        return "redirect:/post/" + postId;
     }
 
     @GetMapping("/post/{postId}")
     public String postDetail(@PathVariable Long postId, Model model) {
         Optional<Post> post = postService.findOne(postId);
         if (post.isPresent()) {
-            model.addAttribute("post", post);
+            model.addAttribute("post", post.get());
         } else {
             model.addAttribute("errorMessage", "포스트 정보를 찾을 수 없습니다.");
         }
@@ -62,7 +62,7 @@ public class PostController {
     public String postEditForm(@PathVariable Long postId, Model model) {
         Optional<Post> post = postService.findOne(postId);
         if (post.isPresent()) {
-            model.addAttribute("post", post);
+            model.addAttribute("post", post.get());
         } else {
             model.addAttribute("errorMessage", "포스트 정보를 찾을 수 없습니다.");
         }
