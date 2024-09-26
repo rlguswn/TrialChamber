@@ -1,11 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="~{fragments/header :: header}"></head>
+    <head th:replace="~{fragments/header :: header}"></head>
 
 <body>
     <nav th:replace="~{fragments/navbar :: navbar}"></nav>
     
-    <h1>Hello, world!</h1>
+    <main class="container">
+        <div th:replace="~{fragments/banner :: banner}"></div>
+    </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
 
