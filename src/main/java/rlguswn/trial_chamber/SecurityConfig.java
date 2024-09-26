@@ -25,7 +25,8 @@ public class SecurityConfig {
                                 "/", 
                                 "/members/new", 
                                 "/members/login",
-                                "/css/**"
+                                "/css/**",
+                                "/error"
                         ).permitAll()
                         .requestMatchers("/admin").hasRole("USER")
                         .anyRequest().authenticated()
