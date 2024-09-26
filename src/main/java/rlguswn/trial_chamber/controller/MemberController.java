@@ -11,6 +11,8 @@ import rlguswn.trial_chamber.dto.MemberForm;
 import rlguswn.trial_chamber.dto.MemberUpdateForm;
 import rlguswn.trial_chamber.service.MemberService;
 
+import java.util.List;
+
 @Controller
 public class MemberController {
 
@@ -52,12 +54,10 @@ public class MemberController {
     }
 
     @GetMapping("/members/my-info/edit")
-    public String myInfoEditForm(Model model, MemberUpdateForm form) {
+    public String myInfoEditForm(Model model) {
         Member member = memberService.getLoginMember();
         if (member != null) {
-            form.setName(member.getName());
-            form.setUsername(member.getUsername());
-            model.addAttribute("form", form);
+            model.addAttribute("member", member);
         } else {
             model.addAttribute("errorMessage", "멤버 정보를 찾을 수 없습니다.");
         }
@@ -68,5 +68,13 @@ public class MemberController {
     public String myInfoEdit(Model model, MemberUpdateForm form) {
         memberService.updateMember(form);
         return "redirect:/members/my-info";
+    }
+
+    @GetMapping("/members")
+    public String memberList(Model model) {
+        System.out.println("member list call");
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }
