@@ -24,6 +24,8 @@ public class Problem {
 
     private String description;
 
+    private String answer;
+
     private String trialType;
 
     private Boolean autoGrade;
@@ -38,11 +40,12 @@ public class Problem {
     protected Problem() {
     };
 
-    public Problem(Member member, Post post, String title, String description, String trialType, Boolean autoGrade) {
+    public Problem(Member member, Post post, String title, String description, String answer, String trialType, Boolean autoGrade) {
         this.member = member;
         this.post = post;
         this.title = title;
         this.description = description;
+        this.answer = answer;
         this.trialType = trialType;
         this.autoGrade = autoGrade;
         this.createdDate = LocalDateTime.now();
@@ -87,6 +90,14 @@ public class Problem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public  String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public String getTrialType() {
