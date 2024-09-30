@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+
+    <main class="container">
+        <div th:replace="~{fragments/banner :: banner}"></div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Submission Detail</h2>
+
+                <div th:if="${errorMessage}">
+                    <p style="color: red;">[[${errorMessage}]]</p>
+                </div>
+
+                <h3>Submission ID: [[${submission.id}]]</h3>
+                <p>Solution: [[${submission.solution}]]</p>
+
+                <div class="d-grid mt-3">
+                    <a th:href="@{/submission/{submissionId}/edit(submissionId=${submission.id})}" class="btn btn-warning">Edit Submission</a>
+                    <form action="/submission/{submissionId}/delete" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">Delete Submission</button>
+                    </form>
+                </div>
+
+                <div class="text-center mt-3">
+                    <a href="/submission" class="btn btn-secondary">Back to Submission List</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <script th:replace="~{fragments/script :: script}"></script>
+</body>
+</html>

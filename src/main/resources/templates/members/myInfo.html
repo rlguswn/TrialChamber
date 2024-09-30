@@ -1,27 +1,41 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/header :: header}"></head>
+<head th:replace="~{fragments/header :: header}"></head>
 
-    <body>
-        <nav th:replace="~{fragments/navbar :: navbar}"></nav>
-        
-        <main class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10 col-lg-12 col-md-9">
-                    <div th:if="${member}">
-                        <p>아이디: <span th:text="${member.username}">아이디</span></p>
-                        <p>이름: <span th:text="${member.name}">이름</span></p>
-                        <p>가입일자: <span th:text="${member.createdDate}">가입일자</span></p>
-                    </div>
-                    <div th:unless="${member}">
-                        <p>member 정보를 불러올 수 없습니다.</p>
-                    </div>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    
+    <main class="container">
+        <div th:replace="~{fragments/banner :: banner}"></div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">My Info</h2>
+
+                <div th:if="${errorMessage}">
+                    <p style="color: red;">[[${errorMessage}]]</p>
+                </div>
+
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Username:</strong> [[${member.username}]]</li>
+                    <li class="list-group-item"><strong>Name:</strong> <span th:text="${member.name != null ? member.name : 'null'}"></span></li>
+                    <li class="list-group-item"><strong>Role:</strong> <span th:text="${member.role != null ? member.role.substring(5) : 'null'}"></span></li>
+                    <li class="list-group-item">
+                        <strong>Joined On:</strong> 
+                        <span th:text="${member.createdDate != null ? #temporals.format(member.createdDate, 'yyyy-MM-dd') : 'null'}"></span>
+                    </li>
+                    <li class="list-group-item"><strong>Submission Count:</strong> <span th:text="${#lists.size(member.submission)}"></span></li>
+                </ul>
+
+                <div class="d-grid mt-3">
+                    <a href="/members/my-info/edit" class="btn btn-bd-primary">Edit My Info</a>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
 
-        <script th:replace="~{fragments/script :: script}"></script>
-    </body>
+    <script th:replace="~{fragments/script :: script}"></script>
+</body>
 </html>

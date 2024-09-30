@@ -2,42 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{fragments/header :: header}"></head>
 
-    <body>
-        <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    
+    <main class="container">
+        <div th:replace="~{fragments/banner :: banner}"></div>
         
-        <main class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10 col-lg-12 col-md-9">
-                    <form action="/members/login" method="post">
-                        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-                    
-                        <div class="form-floating">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="id" autocomplete="username">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Login</h2>
+
+                <!-- 에러 메시지 출력 -->
+                <div th:if="${errorMessage}">
+                    <p style="color: red;" class="text-center">[[${errorMessage}]]</p>
+                </div>
+
+                <!-- 로그인 폼 -->
+                <form action="/members/login" method="post">
+                    <div class="form-group mb-3">
                         <label for="username">Username</label>
-                        </div>
-                        <div class="form-floating">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="password" autocomplete="current-password">
+                        <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username">
+                    </div>
+
+                    <div class="form-group mb-3">
                         <label for="password">Password</label>
-                        </div>
-                    
-                        <div class="form-check text-start my-3">
-                            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Remember me
-                            </label>
-                        </div>
-                        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-                        <div th:if="${errorMessage}">
-                            <p style="color: red;">[[${errorMessage}]]</p>
-                        </div>
-                        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
-                    </form>
+                        <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+                    </div>
+
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-bd-primary">Login</button>
+                    </div>
+                </form>
+
+                <!-- 회원가입 버튼 -->
+                <div class="text-center">
+                    <p>Don't have an account?</p>
+                    <a href="/members/new" class="btn btn-secondary">Sign Up</a>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
 
-        <script th:replace="~{fragments/script :: script}"></script>
-    </body>
+    <script th:replace="~{fragments/script :: script}"></script>
+</body>
 </html>

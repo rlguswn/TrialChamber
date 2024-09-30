@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+
+    <main class="container">
+        <div th:replace="~{fragments/banner :: banner}"></div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Edit Submission</h2>
+
+                <form action="/submission/[submission.id]/edit" method="post">
+                    <div class="form-group mb-3">
+                        <label for="solution">Solution</label>
+                        <textarea class="form-control" id="solution" name="solution" required th:text="*{solution}"></textarea>
+                    </div>
+
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-bd-primary">Update Submission</button>
+                    </div>
+                </form>
+
+                <div class="text-center">
+                    <a href="/submission/[submission.id]" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <script th:replace="~{fragments/script :: script}"></script>
+</body>
+</html>

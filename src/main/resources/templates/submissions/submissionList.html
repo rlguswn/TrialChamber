@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
+
+<main class="container">
+    <h1>제출 목록</h1>
+
+    <div th:if="${submissions.size() == 0}">
+        <p>현재 제출물이 없습니다.</p>
+    </div>
+
+    <div th:if="${submissions.size() > 0}">
+        <ul>
+            <li th:each="submission : ${submissions}">
+                <a th:href="@{/submission/{submissionId}(submissionId=${submission.id})}">
+                    [[${submission.problem.title}]] - 제출자: [[${submission.member.name}]]
+                </a>
+            </li>
+        </ul>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+<script th:replace="~{fragments/script :: script}"></script>
+</body>
+</html>

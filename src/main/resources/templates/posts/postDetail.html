@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/header :: header}"></head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    
+    <main class="container">
+        <div th:replace="~{fragments/banner :: banner}"></div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Post Detail</h2>
+
+                <div th:if="${errorMessage}">
+                    <p style="color: red;">[[${errorMessage}]]</p>
+                </div>
+
+                <!-- Title and deadline in a flexbox -->
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h3>[[${post.title}]]</h3>
+                    <!-- Only show deadline if it exists -->
+                    <p th:if="${post.deadline != null}" class="text-muted mb-0">
+                        [[${#temporals.format(post.deadline, 'yyyy-MM-dd HH:mm')}]] 까지
+                    </p>
+                </div>
+
+                <p>[[${post.description}]]</p>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <a th:href="@{/post/{postId}/edit(postId=${post.id})}" class="btn btn-bd-primary btn-sm">Edit Post</a>
+                    <a th:href="@{/post/{postId}/problem/new(postId=${post.id})}" class="btn btn-warning btn-sm">Create Problem</a>
+                    <form th:action="@{/post/{postId}/delete(postId=${post.id})}" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete Post</button>
+                    </form>
+                </div>
+
+                <div class="text-center mt-3">
+                    <a href="/post" class="btn btn-secondary">Back to Post List</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <script th:replace="~{fragments/script :: script}"></script>
+</body>
+</html>
