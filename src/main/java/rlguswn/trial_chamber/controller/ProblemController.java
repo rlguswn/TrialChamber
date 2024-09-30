@@ -31,7 +31,14 @@ public class ProblemController {
     }
 
     @GetMapping("/post/{postId}/problem/new")
-    public String createProblemForm() {
+    public String createProblemForm(@PathVariable Long postId, Model model) {
+        Optional<Post> post = postService.findOne(postId);
+        if (post.isPresent()) {
+            model.addAttribute("post", post.get());
+        } else {
+            model.addAttribute("errorMessage", "포스트 정보를 찾을 수 없습니다.");
+            return "redirect:/post";
+        }
         return "problems/createProblemForm";
     }
 
