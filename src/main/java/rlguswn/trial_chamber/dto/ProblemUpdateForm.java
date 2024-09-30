@@ -4,6 +4,7 @@ public class ProblemUpdateForm {
 
     private String title;
     private String description;
+    private String answer;
     private String trialType;
     private Boolean autoGrade;
 
@@ -21,6 +22,14 @@ public class ProblemUpdateForm {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public String getTrialType() {

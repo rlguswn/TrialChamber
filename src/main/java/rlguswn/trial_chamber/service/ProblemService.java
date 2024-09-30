@@ -30,6 +30,7 @@ public class ProblemService {
             post,
             form.getTitle(),
             form.getDescription(),
+            form.getAnswer(),
             form.getTrialType(),
             form.getAutoGrade()
         );
@@ -70,6 +71,7 @@ public class ProblemService {
 
         problem.setTitle(form.getTitle());
         problem.setDescription(form.getDescription());
+        problem.setAnswer(form.getAnswer());
         problem.setTrialType(form.getTrialType());
         problem.setAutoGrade(form.getAutoGrade());
 
