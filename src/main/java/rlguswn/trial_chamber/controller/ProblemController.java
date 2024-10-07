@@ -50,6 +50,13 @@ public class ProblemController {
         return "redirect:/post/" + postId;
     }
 
+    @GetMapping("/post/{postId}/problem")
+    public String problemPostList(@PathVariable Long postId, Model model) {
+        List<Problem> problems = problemService.findProblemsByPostId(postId);
+        model.addAttribute("problems", problems);
+        return "problems/problemPostList";
+    }
+
     @GetMapping("/problem")
     public String problemList(Model model) {
         List<Problem> problems = problemService.findProblems();
