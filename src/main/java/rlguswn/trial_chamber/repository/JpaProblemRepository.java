@@ -29,7 +29,7 @@ public class JpaProblemRepository implements ProblemRepository {
 
     @Override
     public List<Problem> findByPostId(Long postId) {
-        return em.createQuery("select p from Problem p where p.postId = :postId", Problem.class)
+        return em.createQuery("select p from Problem p where p.post.id = :postId", Problem.class)
                 .setParameter("postId", postId)
                 .getResultList();
     }
