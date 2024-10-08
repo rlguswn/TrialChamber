@@ -51,10 +51,10 @@ public class ProblemController {
     }
 
     @GetMapping("/post/{postId}/problem")
-    public String problemPostList(@PathVariable Long postId, Model model) {
+    public String problemTrial(@PathVariable Long postId, Model model) {
         List<Problem> problems = problemService.findProblemsByPostId(postId);
         model.addAttribute("problems", problems);
-        return "problems/problemPostList";
+        return "problems/problemTrial";
     }
 
     @GetMapping("/problem")
