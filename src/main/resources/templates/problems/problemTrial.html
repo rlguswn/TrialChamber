@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    
+    <main class="container">
+        <div th:replace="~{fragments/banner :: banner}"></div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center mb-4">Problem List</h2>
+
+                <div th:if="${errorMessage}">
+                    <p style="color: red;">[[${errorMessage}]]</p>
+                </div>
+
+                <div th:if="${#lists.isEmpty(problems)}">
+                    <p class="text-center">문제가 없습니다.</p>
+                </div>
+
+                <div th:if="${!#lists.isEmpty(problems)}">
+                    <form th:action="@{/post/{postId}/submission/new(postId=${postId})}" method="post">
+                        <div class="problem-list">
+                            <div class="row" th:each="problem : ${problems}">
+                                <div class="col-md-12 mb-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">[[${problem.title}]]</h5>
+                                            <span class="badge bg-secondary">
+                                                <span th:if="${problem.trialType == 'option'}">선택형</span>
+                                                <span th:if="${problem.trialType == 'essay'}">서술형</span>
+                                                <span th:if="${problem.trialType == 'multiple'}">다중선택형</span>
+                                            </span>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">[[${problem.description}]]</p>
+                                        </div>
+                                    </div>
+
+                                    <div th:switch="${problem.trialType}" class="mt-2">
+                                        <label>정답:</label>
+                                        <div th:case="'option'">
+                                            <select class="form-control" name="answers[${problem.id}]">
+                                                <option value="A">Option A</option>
+                                                <option value="B">Option B</option>
+                                                <option value="C">Option C</option>
+                                                <option value="D">Option D</option>
+                                            </select>
+                                        </div>
+
+                                        <div th:case="'essay'">
+                                            <input type="text" class="form-control" name="answers[${problem.id}]" placeholder="여기에 정답을 입력하세요..." />
+                                        </div>
+
+                                        <div th:case="'multiple'">
+                                            <div>
+                                                <input type="checkbox" name="answers[${problem.id}]" value="A" /> A
+                                                <input type="checkbox" name="answers[${problem.id}]" value="B" /> B
+                                                <input type="checkbox" name="answers[${problem.id}]" value="C" /> C
+                                                <input type="checkbox" name="answers[${problem.id}]" value="D" /> D
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Submit All Answers</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <script th:replace="~{fragments/script :: script}"></script>
+</body>
+</html>
