@@ -5,16 +5,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import rlguswn.trial_chamber.domain.Member;
 import rlguswn.trial_chamber.domain.Problem;
 import rlguswn.trial_chamber.domain.Submission;
-import rlguswn.trial_chamber.dto.SubmissionForm;
 import rlguswn.trial_chamber.dto.SubmissionUpdateForm;
 import rlguswn.trial_chamber.service.MemberService;
 import rlguswn.trial_chamber.service.ProblemService;
 import rlguswn.trial_chamber.service.SubmissionService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -35,17 +36,17 @@ public class SubmissionController {
         return "submissions/createSubmissionForm";
     }
 
-    @PostMapping("/submission/new")
-    public String createSubmission(SubmissionForm form, Model model) {
+    @PostMapping("/post/{postId}/submission/new")
+    public String createSubmission(@PathVariable Long postId, @RequestParam Map<String, String> answer, Model model) {
         Member member = memberService.getLoginMember();
-        Optional<Problem> problem = problemService.findOne(form.getProblemId());
-        if (problem.isPresent()) {
-            Long postId = problem.get().getPost().getId();
-            submissionService.createSubmission(form, problem.get(), member);
-            return "redirect:/post/" + postId;
-        }
-        model.addAttribute("errorMessage", "문제 정보를 찾을 수 없습니다.");
-        return "redirect:/submission/new";
+
+        answer.forEach((key, value) -> {
+            Long problemId = Long.parseLong(key.replaceAll("answer", ""));
+            Optional<Problem> problem = problemService.findOne(problemId);
+            problem.ifPresent(problem1 -> submissionService.createSubmission(problem1, value, member));
+        });
+
+        return "redirect:/post/" + postId;
     }
 
     @GetMapping("/submission")
