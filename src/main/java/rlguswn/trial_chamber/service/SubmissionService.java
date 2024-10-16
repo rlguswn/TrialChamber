@@ -22,15 +22,12 @@ public class SubmissionService {
         this.submissionRepository = submissionRepository;
     }
 
-    public Long createSubmission(SubmissionForm form, Problem problem, Member member) {
-        validateSubmissionFormData(form);
-
+    public Long createSubmission(Problem problem, String answer, Member member) {
         Submission submission = new Submission(
                 problem,
                 member,
-                form.getContent()
+                answer
         );
-
         submissionRepository.save(submission);
         return submission.getId();
     }
