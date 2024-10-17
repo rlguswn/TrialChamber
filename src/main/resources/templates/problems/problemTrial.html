@@ -42,7 +42,7 @@
                                     <div th:switch="${problem.trialType}" class="mt-2">
                                         <label>정답:</label>
                                         <div th:case="'option'">
-                                            <select class="form-control" name="answer[[${problem.id}]]">
+                                            <select class="form-control" th:name="'answer' + ${problem.id}">
                                                 <option value="A">Option A</option>
                                                 <option value="B">Option B</option>
                                                 <option value="C">Option C</option>
@@ -51,15 +51,15 @@
                                         </div>
 
                                         <div th:case="'essay'">
-                                            <input type="text" class="form-control" name="answer[[${problem.id}]]" placeholder="여기에 정답을 입력하세요..." />
+                                            <input type="text" class="form-control" th:name="'answer' + ${problem.id}" placeholder="여기에 정답을 입력하세요..." />
                                         </div>
 
                                         <div th:case="'multiple'">
                                             <div>
-                                                <input type="checkbox" name="answer[[${problem.id}]]" value="A" /> A
-                                                <input type="checkbox" name="answer[[${problem.id}]]" value="B" /> B
-                                                <input type="checkbox" name="answer[[${problem.id}]]" value="C" /> C
-                                                <input type="checkbox" name="answer[[${problem.id}]]" value="D" /> D
+                                                <input type="checkbox" th:name="'answer' + ${problem.id}" value="A" /> A
+                                                <input type="checkbox" th:name="'answer' + ${problem.id}" value="B" /> B
+                                                <input type="checkbox" th:name="'answer' + ${problem.id}" value="C" /> C
+                                                <input type="checkbox" th:name="'answer' + ${problem.id}" value="D" /> D
                                             </div>
                                         </div>
                                     </div>
