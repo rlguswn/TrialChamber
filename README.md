@@ -39,7 +39,38 @@ http://54.252.211.80:8080/
 [4. 라이브 데모](#4-기능별-라이브-데모)  
 
 # 1. 기술 스택 & 개발 환경
-업데이트 예정
+<table>
+  <thead>
+    <tr>
+      <th>프론트엔드</th>
+      <th>백엔드</th>
+      <th>배포</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+      <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+      <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+      <img src="https://img.shields.io/badge/thymeleaf-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white">
+      <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
+      </td>
+      <td>
+      <img src="https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=openjdk&logoColor=white">
+      <img src="https://img.shields.io/badge/JPA-000000?style=for-the-badge&logo=openjdk&logoColor=white">
+      <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+      <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+      <img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white">
+      <img src="https://img.shields.io/badge/JPQL-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
+      </td>
+      <td>
+      <img src="https://img.shields.io/badge/AWS EC2-232F3E?style=for-the-badge&logo=amazonwebservices&logoColor=white">
+      <img src="https://img.shields.io/badge/Docker Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white">
+      <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 # 2. 프로젝트 요약
 업데이트 예정
