@@ -29,8 +29,7 @@
 ![trialchamber erd](https://github.com/user-attachments/assets/b6c93d41-37c3-423f-b5ea-7ef9bfa92438)
 
 # 배포 URL
-(https 업데이트 예정)
-http://54.252.211.80:8080/
+(프로젝트 유지 보수 및 개선을 위한 배포 중단)
 
 # Index
 [1. 기술스택 & 개발환경](#1-기술-스택--개발-환경)  
